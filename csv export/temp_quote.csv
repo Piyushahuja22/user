@@ -1,0 +1,5 @@
+VEHICLE_TYPE,VEHICLE_OLD_OR_NEW,VEHICLE_REGISTRATION_NUMBER,VEHICLE_MODEL,VEHICLE_MODEL_NUMBER,VEHICLE_FUEL,VEHICLE_REGISTRATION_PLACE,CUSTOMER_FIRST_NAME,CUSTOMER_LAST_NAME,CUSTOMER_MOBILE_NUMBER,CUSTOMER_EMAIL
+two,new,ddd,ddd,ddd,petrol,d,dddd,dd,dd,undefined
+two,new,undefined,undefined,undefined,diesel,undefined,undefined,undefined,undefined,undefined
+four,new,Hondayfhgf,Brio,fahsf,diesel,fhaskhdf,vsdv,vsdv,vsd,undefined
+four,new,Honda,Jazz,abcdef,diesel,Mumbai,Priyanka,Sharma,1234567890,ps@gmail.com
