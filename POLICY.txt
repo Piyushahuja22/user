@@ -1,0 +1,40 @@
+create table policies(
+policy_id VARCHAR2(20) PRIMARY KEY,
+policy_category VARCHAR2(10) NOT NULL ,
+policy_type VARCHAR2(30) NOT NULL,
+policy_summary VARCHAR2(200) NOT NULL,
+description VARCHAR2(1000) NOT NULL,
+VALIDITY_IN_YEARS NUMBER(10) NOT NULL
+);
+
+INSERT INTO policies VALUES('1','Basic','Basic Cover','Own Damage Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value',1);
+
+INSERT INTO policies VALUES('2','Basic','Basic Cover & Road Assistance Cover','Own Damage Premium, Total Liability Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP',1);
+
+
+INSERT INTO policies VALUES('3','Basic','Basic Cover, Road Assistance Cover & Depreciation Cover','Own Damage Premium, Total Liability Premium, Total Discount','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP, Total Discount: Claim Bonus and ARAI Approved Anti-Theft Discount',1);
+
+
+INSERT INTO policies VALUES('4','Medium','Basic Cover','Own Damage Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value',1);
+
+INSERT INTO policies VALUES('5','Medium','Basic Cover & Road Assistance Cover','Own Damage Premium, Total Liability Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP',1);
+
+
+INSERT INTO policies VALUES('6','Medium','Basic Cover, Road Assistance Cover & Depreciation Cover','Own Damage Premium, Total Liability Premium, Total Discount','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP, Total Discount: Claim Bonus and ARAI Approved Anti-Theft Discount',1);
+
+INSERT INTO policies VALUES('7','High','Basic Cover','Own Damage Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value',2);
+
+INSERT INTO policies VALUES('8','High','Basic Cover & Road Assistance Cover','Own Damage Premium, Total Liability Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP',2);
+
+
+INSERT INTO policies VALUES('9','High','Basic Cover, Road Assistance Cover & Depreciation Cover','Own Damage Premium, Total Liability Premium, Total Discount','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP, Total Discount: Claim Bonus and ARAI Approved Anti-Theft Discount',2);
+
+INSERT INTO policies VALUES('10','Deluxe','Basic Cover','Own Damage Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value',2);
+
+INSERT INTO policies VALUES('11','Deluxe','Basic Cover & Road Assistance Cover','Own Damage Premium, Total Liability Premium','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP',2);
+
+
+INSERT INTO policies VALUES('12','Deluxe','Basic Cover, Road Assistance Cover & Depreciation Cover','Own Damage Premium, Total Liability Premium, Total Discount','Own Damage Premium: Basic OD, Electrical and Non-Electrical Accessories and Bi-Fuel Value, Total Liability Premium: PA Cover for Owner Driver and Bi-Fuel TP, Total Discount: Claim Bonus and ARAI Approved Anti-Theft Discount',2);
+
+
+
