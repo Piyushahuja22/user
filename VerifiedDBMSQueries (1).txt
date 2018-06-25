@@ -1,0 +1,129 @@
+
+CREATE TABLE users
+(
+User_Id VARCHAR2(20) PRIMARY KEY,
+User_Name VARCHAR2(40) NOT NULL,
+User_Password VARCHAR2(20) NOT NULL,
+User_Role VARCHAR2(20) NOT NULL
+);
+
+CREATE TABLE customers
+(
+Customer_Id VARCHAR2(20) PRIMARY KEY,
+Customer_First_Name VARCHAR2(20) ,
+Customer_Last_Name VARCHAR2(20),
+Customer_DOB DATE NOT NULL ,
+Customer_Gender CHAR(2) NOT NULL ,
+Customer_Address VARCHAR2(40) NOT NULL ,
+Customer_MOB_Number VARCHAR2(20) NOT NULL ,
+Customer_Email VARCHAR2(20) NOT NULL ,
+Customer_Passport_Number VARCHAR2(20) NULL ,
+Customer_Marital_Status CHAR(8) NULL ,
+Customer_Aadhar_No INTEGER NOT NULL,
+User_Id VARCHAR2(20)
+);
+
+ALTER TABLE customers ADD CONSTRAINT fk_customer_user_id 
+FOREIGN KEY (User_Id) REFERENCES users(User_Id);
+
+create table temp_quote(
+Vehicle_Type VARCHAR2(20) NOT NULL ,
+Vehicle_Old_Or_New VARCHAR2(5)  NOT NULL,
+Vehicle_Registration_Number VARCHAR2(20)  NOT NULL PRIMARY KEY,
+Vehicle_Model VARCHAR2(20)  NOT NULL,
+Vehicle_Model_Number VARCHAR2(20) NOT NULL ,
+Vehicle_Fuel VARCHAR2(10)  NOT NULL,
+Vehicle_Registration_Place VARCHAR2(20) NOT NULL,
+Customer_First_Name VARCHAR2(20)  NOT NULL,
+Customer_Last_Name VARCHAR2(20)  NOT NULL,
+Customer_Mobile_Number INTEGER NOT NULL ,
+Customer_Email VARCHAR2(20)  NOT NULL
+);
+
+CREATE TABLE vehicles
+(
+Vehicle_Registration_Number VARCHAR2(20) PRIMARY KEY,
+Vehicle_Old_Or_New VARCHAR2(5),
+Vehicle_Value INTEGER NULL ,
+Vehicle_Type VARCHAR2(20) NOT NULL ,
+Vehicle_Number_Of_Seat INTEGER NULL ,
+Vehicle_Manufacturer VARCHAR2(20) NOT NULL ,
+Vehicle_Engine_Number INTEGER NOT NULL ,
+Vehicle_Chasis_Number INTEGER NOT NULL ,
+Vehicle_Number VARCHAR2(20) NOT NULL ,
+Vehicle_Model VARCHAR2(20),
+Vehicle_Model_Number VARCHAR2(20) NOT NULL ,
+Vehicle_Fuel VARCHAR2(10),
+Vehicle_Registration_Place VARCHAR2(20) NOT NULL,
+Customer_Id VARCHAR2(20)
+);
+ALTER TABLE vehicles
+ADD CONSTRAINT fk_vehicle_customer_id
+   FOREIGN KEY (Customer_Id)
+   REFERENCES customers(Customer_Id);
+
+
+
+CREATE TABLE quotes
+(
+Quote_Id VARCHAR2(20) PRIMARY KEY,
+Valid_From_Date DATE NOT NULL ,
+Valid_Till_Date DATE NOT NULL ,
+Description VARCHAR2(100) NULL ,
+Product_Type CHAR(15) NULL,
+Coverage_Level VARCHAR2(20) NOT NULL,
+Customer_Id VARCHAR2(20)
+);
+ALTER TABLE quotes
+ADD CONSTRAINT fk_quote_customer_id
+   FOREIGN KEY (Customer_Id)
+   REFERENCES customers(Customer_Id);
+
+
+
+CREATE TABLE request_status
+(
+Request_Status VARCHAR2(20) NOT NULL ,
+Quote_Id VARCHAR2(20),
+Customer_Id VARCHAR2(20),
+CONSTRAINT pk_request_status PRIMARY KEY (Quote_Id, Customer_Id) ); 
+);
+
+
+CREATE TABLE premium_payment_receipt
+(
+Premium_Payment_Receipt_Id VARCHAR2(20) PRIMARY KEY,
+Policy_Number VARCHAR2(20) NOT NULL ,
+Premium_Payment_Amount INTEGER NOT NULL ,
+Premium_Payment_Schedule DATE NOT NULL ,
+Time DATE NOT NULL,
+User_Id VARCHAR2(20) 
+);
+ALTER TABLE premium_payment_receipt
+ADD CONSTRAINT fk_ppr_user_id
+   FOREIGN KEY (User_Id)
+   REFERENCES users(User_Id);
+
+
+CREATE TABLE incidents
+(
+Incident_Id VARCHAR2(20) PRIMARY KEY,
+Incident_Type VARCHAR2(50) NULL,
+Incident_Date DATE NOT NULL ,
+Incident_Inspector VARCHAR2(20) NULL,
+Incident_Cost INTEGER NULL,
+Incident_Description VARCHAR2(100) NULL,
+User_Id VARCHAR2(20),                   
+Quote_Id VARCHAR2(20)                      
+);
+ALTER TABLE incidents
+ADD CONSTRAINT fk__incident_user_id
+   FOREIGN KEY (User_Id)
+   REFERENCES users(User_Id);
+
+CREATE TABLE policy(
+Policy_Id VARCHAR2(20) PRIMARY KEY,
+Policy_Type VARCHAR2(20),
+Description VARCHAR2(1000),
+Validity_In_Years NUMBER
+);
