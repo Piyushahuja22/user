@@ -1,0 +1,175 @@
+
+CREATE TABLE users
+(
+User_Id VARCHAR2(100) PRIMARY KEY,
+User_Name VARCHAR2(100) ,
+User_Password VARCHAR2(100),
+User_Role VARCHAR2(100)
+);
+
+
+INSERT into users VALUES('user-3','verify@gmail.com','1234','verifier');
+
+INSERT into users VALUES('user-4','staff@gmail.com','1234','staff');
+
+INSERT into users VALUES('user-1','yravinderkumar33@gmail.com','1234','admin');
+
+INSERT into users VALUES('user-2','test@gmail.com','1234','staff');
+
+
+
+create table temp_quote(
+counter NUMBER PRIMARY KEY,
+Vehicle_Type VARCHAR2(20) ,
+Vehicle_Old_Or_New VARCHAR2(5),
+Vehicle_Registration_Number VARCHAR2(20),
+Vehicle_Model VARCHAR2(20)  ,
+Vehicle_Model_Number VARCHAR2(100) ,
+Vehicle_Fuel VARCHAR2(10)  ,
+Vehicle_Registration_Place VARCHAR2(20) ,
+Customer_First_Name VARCHAR2(20) ,
+Customer_Last_Name VARCHAR2(20),
+Customer_Mobile_Number VARCHAR2(20),
+Customer_Email VARCHAR2(100)
+);
+
+
+CREATE TABLE customers
+(
+Customer_Id VARCHAR2(20) PRIMARY KEY,
+Customer_First_Name VARCHAR2(20) NOT NULL ,
+Customer_Last_Name VARCHAR2(20) NOT NULL,
+Customer_DOB DATE ,
+Customer_Gender VARCHAR2(2)  ,
+Customer_Address VARCHAR2(40) ,
+Customer_MOB_Number VARCHAR2(40) ,
+Customer_Email VARCHAR2(100) NOT NULL ,
+Customer_Password VARCHAR2(100) NOT NULL,
+Customer_Passport_Number VARCHAR2(100) ,
+Customer_Marital_Status VARCHAR2(20) ,
+Customer_Aadhar_No VARCHAR2(100) ,
+User_Id VARCHAR2(100)
+);
+ALTER TABLE customers ADD CONSTRAINT fk_customer_user_id 
+FOREIGN KEY (User_Id) REFERENCES users(User_Id);
+
+
+
+CREATE TABLE vehicles
+(
+Vehicle_Registration_Number VARCHAR2(100) PRIMARY KEY,
+Vehicle_Old_Or_New VARCHAR2(20),
+Vehicle_Value  VARCHAR2(100),
+Vehicle_Type VARCHAR2(50),
+Vehicle_Number_Of_Seat VARCHAR2(50),
+Vehicle_Manufacturer VARCHAR2(50)  ,
+Vehicle_Engine_Number VARCHAR2(50) ,
+Vehicle_Chasis_Number VARCHAR2(50)  ,
+Vehicle_Number VARCHAR2(50),
+Vehicle_Model VARCHAR2(50),
+Vehicle_Model_Number VARCHAR2(50),
+Vehicle_Fuel VARCHAR2(50),
+status_flag VARCHAR2(20),
+Vehicle_Registration_Place VARCHAR2(50),
+Customer_Id VARCHAR2(50)
+);
+ALTER TABLE vehicles
+ADD CONSTRAINT fk_vehicle_customer_id
+   FOREIGN KEY (Customer_Id)
+   REFERENCES customers(Customer_Id);
+
+CREATE TABLE quotes
+(
+Quote_Id VARCHAR2(20) PRIMARY KEY,
+Valid_From_Date DATE NOT NULL ,
+Valid_Till_Date DATE NOT NULL ,
+Description VARCHAR2(100) NULL ,
+Product_Type CHAR(15) NULL,
+Coverage_Level VARCHAR2(20) NOT NULL,
+Customer_Id VARCHAR2(20)
+);
+ALTER TABLE quotes
+ADD CONSTRAINT fk_quote_customer_id
+   FOREIGN KEY (Customer_Id)
+   REFERENCES customers(Customer_Id);
+
+CREATE TABLE INCIDENTS
+(
+Incident_Id VARCHAR2(20) PRIMARY KEY,
+Incident_Type VARCHAR2(50),
+Incident_Date DATE,
+Description VARCHAR2(100),
+User_Id VARCHAR2(20), 
+Incident_Status VARCHAR2(20),
+Incident_Image VARCHAR2(20)
+);
+
+ALTER TABLE INCIDENTS
+ADD CONSTRAINT fk_inc_user_id
+   FOREIGN KEY (User_Id)
+   REFERENCES users(User_Id);
+
+
+CREATE TABLE INCIDENT_REPORTS	
+(
+Incident_Report_Id VARCHAR2(20) PRIMARY KEY,
+Incident_Surveyor VARCHAR2(20),
+Incident_Coverage NUMBER ,
+Approval_Status VARCHAR2(20),
+Incident_Id VARCHAR2(20) 
+);
+ALTER TABLE INCIDENT_REPORTS
+ADD CONSTRAINT fk_inc_id
+   FOREIGN KEY (Incident_Id)
+   REFERENCES incidents(Incident_Id);
+
+CREATE TABLE CLAIMS
+(
+Claim_Id VARCHAR2(20) PRIMARY KEY,
+Claim_Amount NUMBER ,
+Incident_Report_Id VARCHAR2(20) NULL,
+Date_Of_Claim DATE,
+Incident_Type VARCHAR2(50)
+);
+ALTER TABLE CLAIMS
+ADD CONSTRAINT fk_inc_report_id
+   FOREIGN KEY (Incident_Report_Id)
+   REFERENCES incident_reports(Incident_Report_Id);
+
+
+CREATE TABLE VEHICLES_DATA(
+ VEHICLES_MAKER_NAME VARCHAR2(100),
+ VEHICLES_PRICE  VARCHAR2(100)
+);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Amaze Petrol',473000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Amaze Diesel',560000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda City Petrol',1100000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda WR-V Petrol',791000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Jazz Petrol',600000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda BR-V Petrol',800000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Brio Petrol',500000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Accord Petrol',4400000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda CR-V Petrol',2200000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda City Diesel',892000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda WR-V Diesel',791000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Jazz Diesel',606000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda BR-V Diesel',928000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Brio Diesel',481000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda Accord Diesel',4200000);
+
+INSERT INTO VEHICLES_DATA VALUES('Honda CR-V Diesel',2500000);
